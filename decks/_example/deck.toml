@@ -1,0 +1,10 @@
+slug = "example"
+title = "Example Deck"
+summary = "A starter deck. Delete me and run `simplex new` to scaffold your own."
+tags = ["intro"]
+theme = "dastimator_dark"
+quality = "high_quality"
+voiceover = false
+category = "Examples"
+order = 0
+entrypoints = ["slides.intro:Intro"]

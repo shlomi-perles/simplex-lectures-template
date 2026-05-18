@@ -1,0 +1,48 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install system deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended \
+                                  ffmpeg libcairo2-dev libpango1.0-dev
+      - uses: astral-sh/setup-uv@v3
+      - run: uv sync
+      - uses: actions/cache@v4
+        with:
+          path: |
+            site/decks/*/media
+            ~/.cache/uv
+          key: simplex-${{ hashFiles('uv.lock', 'decks/**/deck.toml', 'decks/**/slides/**/*.py', 'decks/**/manim.cfg') }}
+          restore-keys: simplex-
+      - run: uv run simplex build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
