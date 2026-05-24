@@ -5,6 +5,5 @@ tags = ["intro"]
 theme = "dastimator_dark"
 quality = "high_quality"
 voiceover = false
-category = "Examples"
 order = 0
 entrypoints = ["slides.intro:Intro"]

@@ -1,4 +1,5 @@
 name: Deploy
+
 on:
   push:
     branches: [main]
@@ -16,24 +17,36 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SIMPLEX_BASE_URL: ${{ vars.SIMPLEX_BASE_URL || format('/{0}', github.event.repository.name) }}
+      SIMPLEX_GA_TAG: ${{ secrets.GA_TAG }}
+      SIMPLEX_PREVIEW: "0"
     steps:
-      - uses: actions/checkout@v4
-      - name: Install system deps
+      - uses: actions/checkout@v6
+
+      - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended \
                                   ffmpeg libcairo2-dev libpango1.0-dev
-      - uses: astral-sh/setup-uv@v3
-      - run: uv sync
-      - uses: actions/cache@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
-          path: |
-            site/decks/*/media
-            ~/.cache/uv
-          key: simplex-${{ hashFiles('uv.lock', 'decks/**/deck.toml', 'decks/**/slides/**/*.py', 'decks/**/manim.cfg') }}
-          restore-keys: simplex-
-      - run: uv run simplex build
-      - uses: actions/upload-pages-artifact@v3
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Sync
+        run: uv sync --locked
+
+      - name: Lint
+        run: uv run --locked ruff check .
+
+      - name: Build site
+        run: uv run --locked simplex build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: site
 
