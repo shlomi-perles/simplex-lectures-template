@@ -675,7 +675,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "manim-simplex", specifier = ">=0.2.3" },
-    { name = "simplex-web", specifier = ">=0.2.3" },
+    { name = "simplex-web", specifier = ">=0.2.4" },
 ]
 
 [package.metadata.requires-dev]
@@ -1313,7 +1313,7 @@ wheels = [
 
 [[package]]
 name = "simplex-web"
-version = "0.2.3"
+version = "0.2.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "av" },
@@ -1333,9 +1333,9 @@ dependencies = [
     { name = "typer" },
     { name = "watchfiles" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a6/1a/8cf2569037924f2d4fe8d9fe012eddfc07ac389c5cf4ae85ea02a23a9f27/simplex_web-0.2.3.tar.gz", hash = "sha256:8c9187889247aa142f9ddb61af0ce8731590d97ee7a695db20123470fa8596b1", size = 680923, upload-time = "2026-05-25T03:49:14.819Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9b/37/e19194618ad1d6f7d2de025b7cecc6c71e034cef28eef042fdcd2483adc4/simplex_web-0.2.4.tar.gz", hash = "sha256:c1eb136c7a014bee27ee48b8157558a1aa0f3f06f1d4e0c178719eef64a66294", size = 682472, upload-time = "2026-05-25T04:15:30.867Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e9/2e/8c8a3d1367161947fff0a360e4163f9269380fd745e83aea43e7d9e4c0f6/simplex_web-0.2.3-py3-none-any.whl", hash = "sha256:211849593481b7fcc97cdb5e228028a3ad2528e68e95ae050d5f59956b78e7fc", size = 688887, upload-time = "2026-05-25T03:49:12.752Z" },
+    { url = "https://files.pythonhosted.org/packages/d5/37/9dc81c7de50ab4a71fd955c025afa4a26971d517449e7f29bad584ab9d01/simplex_web-0.2.4-py3-none-any.whl", hash = "sha256:9727a29ee0a90710c55d3e0d0fcf3d722cddda860491b1618099af435a3c2297", size = 690499, upload-time = "2026-05-25T04:15:29.163Z" },
 ]
 
 [[package]]
