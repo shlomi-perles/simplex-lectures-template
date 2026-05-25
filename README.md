@@ -4,8 +4,9 @@ A starter repository for building a Manim lecture site with
 [Simplex](https://github.com/shlomi-perles/simplex).
 
 This repository is an application template, not a Python package to publish.
-It depends on the published `simplex-web` package, which installs the
-`simplex` command and brings in `manim-simplex`.
+It depends on the published Simplex package set and is wired for GitHub Pages.
+The next consolidated `manim-simplex` release will open an automated PR that
+removes the retired `simplex-web` dependency and refreshes `uv.lock`.
 
 ## First Setup
 
@@ -131,10 +132,11 @@ Optional deployment settings:
 ## Updating Simplex
 
 This template tracks `uv.lock` on purpose so local builds and GitHub Actions
-use the same dependency graph. To update Simplex:
+use the same dependency graph. Simplex release automation opens dependency PRs
+for this template. To update manually:
 
 ```bash
-uv lock --upgrade-package simplex-web
+uv lock --upgrade-package manim-simplex
 uv sync --locked
 uv run simplex test
 ```
