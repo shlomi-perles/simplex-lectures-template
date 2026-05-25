@@ -63,6 +63,10 @@ uv run simplex serve --watch
 
 Push to `main` to publish with GitHub Pages.
 
+Deck notes support label-based slide refs such as `[slide:key-idea]` and
+BibTeX citations such as `\cite{KB15}` from `refs.bib`. When a TeX engine is
+available, Simplex also generates a downloadable `<title>-note.pdf`.
+
 ## Repository Layout
 
 ```text
@@ -96,9 +100,12 @@ Each deck has a `deck.toml`:
 slug = "example"
 title = "Example Deck"
 summary = "A short description."
-theme = "dastimator_dark"
+theme = "simplex_dark"
 quality = "high_quality"
-entrypoints = ["slides.intro:Intro"]
+entrypoints = ["slides.intro:Intro", "slides.intro:KeyIdea"]
+
+[slides."Key Idea"]
+notes_anchor = "key-idea"
 ```
 
 `entrypoints` points to scene classes relative to the deck directory.
