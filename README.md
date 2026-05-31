@@ -62,6 +62,13 @@ uv run simplex build
 uv run simplex serve --watch
 ```
 
+Render only one true slide theme during iteration or CI:
+
+```bash
+uv run simplex build --slide-theme dark
+uv run simplex test --slide-theme dark
+```
+
 Push to `main` to publish with GitHub Pages.
 
 Deck notes support label-based slide refs such as `[slide:key-idea]` and
@@ -105,11 +112,22 @@ theme = "simplex_dark"
 quality = "high_quality"
 entrypoints = ["slides.intro:Intro", "slides.intro:KeyIdea"]
 
+[slide_themes]
+enabled = true
+dark = "simplex_dark"
+light = "simplex_light"
+default = "dark"
+
 [slides."Key Idea"]
 notes_anchor = "key-idea"
 ```
 
 `entrypoints` points to scene classes relative to the deck directory.
+The template enables true slide themes by default: Simplex renders
+`simplex_dark` and `simplex_light`, including matching thumbnails, and the
+player swaps between those compiled outputs. Set `[slide_themes] enabled =
+false` in `site.toml` or in a deck's `deck.toml` to use the single-render
+filter toggle instead.
 
 ## GitHub Pages
 
