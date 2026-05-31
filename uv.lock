@@ -455,7 +455,7 @@ wheels = [
 
 [[package]]
 name = "manim-simplex"
-version = "0.7.0"
+version = "0.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "av" },
@@ -477,9 +477,9 @@ dependencies = [
     { name = "typer" },
     { name = "watchfiles" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bd/4a/7a94c21ff570dd9bcbddfe9aedb2a8259f73703cad6b59019fcd0c16d343/manim_simplex-0.7.0.tar.gz", hash = "sha256:12387f7547943d018bd55ff8f552a8760843b2d0eae39ecd478ce364b3f4dd2d", size = 873405, upload-time = "2026-05-31T12:59:29.96Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/eb/b6/fd584f8307c1a7eebc51e2ce8b5886b1cd08e3d4a0f5b48f3c34c70e92b5/manim_simplex-0.8.0.tar.gz", hash = "sha256:998589f4bf4557a4ec115c7bf397bdacd7e831192073896ad53e2e258df349a9", size = 873630, upload-time = "2026-05-31T13:33:53.639Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/22/48/7ee92df625012971c0cd0a2916986c78f83757f9b4e309eb0395887d32d9/manim_simplex-0.7.0-py3-none-any.whl", hash = "sha256:5ba8c835fe8383a200f56a7403f659195b13236c35682f21fe9b4f30d7062334", size = 772182, upload-time = "2026-05-31T12:59:28.451Z" },
+    { url = "https://files.pythonhosted.org/packages/f8/81/61722020894e97f0084e3a2ee1231dd59ebaf348a337c807d8669cdd1e66/manim_simplex-0.8.0-py3-none-any.whl", hash = "sha256:669d541fac80d6c06d11120c5118273202726181e1b12b0575c95ef978516d88", size = 772160, upload-time = "2026-05-31T13:33:55.082Z" },
 ]
 
 [[package]]
@@ -697,7 +697,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "manim-simplex", specifier = ">=0.7.0" }]
+requires-dist = [{ name = "manim-simplex", specifier = ">=0.8.0" }]
 
 [package.metadata.requires-dev]
 dev = [

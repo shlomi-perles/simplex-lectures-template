@@ -4,7 +4,7 @@ version = "0.0.0"
 description = "Lectures site built with Simplex."
 requires-python = ">=3.13"
 dependencies = [
-    "manim-simplex>=0.7.0",
+    "manim-simplex>=0.8.0",
 ]
 
 [dependency-groups]
