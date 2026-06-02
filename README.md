@@ -81,12 +81,16 @@ available, Simplex also generates a downloadable `<title>-note.pdf`.
 |-- uv.lock                   locked app environment for local + CI parity
 |-- site.toml                 brand, tagline, navigation
 |-- ruff.toml                 lint config with relaxed deck-slide rules
+|-- simplex_themes/           repo-local Theme Studio exports
+|   |-- code_styles/          custom Pygments styles
+|   |-- palette_styles/       custom Manim/iTerm palette exports
+|   `-- themes/               custom Simplex theme JSON files
 |-- LICENSE                   default MIT license; replace if needed
 |-- .github/workflows/
 |   |-- ci.yml                PR smoke render
 |   `-- deploy.yml            build + deploy the static site to Pages
 `-- decks/example/            starter deck; replace it with your lectures
-    |-- deck.toml             slug, title, theme, entrypoints
+    |-- deck.toml             slug, title, entrypoints, slide themes
     |-- manim.cfg             Manim plugin configuration
     |-- notes.md              rendered into the deck page
     |-- refs.bib              optional BibTeX references
@@ -106,7 +110,6 @@ Each deck has a `deck.toml`:
 slug = "example"
 title = "Example Deck"
 summary = "A short description."
-theme = "simplex_dark"
 quality = "high_quality"
 entrypoints = ["slides.intro:Intro", "slides.intro:KeyIdea"]
 
@@ -126,6 +129,58 @@ The template enables true slide themes by default: Simplex renders
 player swaps between those compiled outputs. Set `[slide_themes] enabled =
 false` in `site.toml` or in a deck's `deck.toml` to use the single-render
 filter toggle instead.
+
+The old top-level `theme = "..."` field is intentionally not used in new deck
+files. With true slide themes, rendered slide pixels come from
+`[slide_themes] dark` and `[slide_themes] light`.
+
+## Theme Studio
+
+Open the palette/code-style editor with:
+
+```bash
+uv run simplex theme-studio
+```
+
+Save exported code styles into `simplex_themes/code_styles/` and exported
+palette JSON or `.itermcolors` files into `simplex_themes/palette_styles/`.
+Save complete theme JSON files into `simplex_themes/themes/`.
+
+Theme names are selected in `site.toml` or per deck:
+
+```toml
+[slide_themes]
+enabled = true
+dark = "simplex_dark"
+light = "my_light"
+default = "dark"
+```
+
+Example `simplex_themes/themes/my_light.json`:
+
+```json
+{
+  "manim_palette": "simplex_light",
+  "code_style": "simplex_solarized_light",
+  "palette": {
+    "background": "#EEEAD8",
+    "font": "#3C313F"
+  }
+}
+```
+
+- `manim_palette` patches Manim constants such as `BLUE`, `BLUE_A`, and
+  `WHITE` for rendered slides.
+- `palette` overrides semantic rendered-slide colors such as `background`,
+  `font`, `accent`, `vertex`, `vertex_stroke`, `edge`, `weight`, `visited`,
+  `label`, and `distance`.
+- `code_style` controls Manim slide `Code` objects.
+- `[web] notes_code_style = "..."` controls markdown notes code blocks.
+- `[web] background`, `[web] text_primary`, and related fields control the
+  generated HTML shell, not rendered slide pixels.
+
+The default dark theme preserves Manim's palette. The default light theme uses
+Simplex's built-in `simplex_light` palette.
 
 ## GitHub Pages
 

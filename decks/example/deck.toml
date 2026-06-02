@@ -2,7 +2,6 @@ slug = "example"
 title = "Example Deck"
 summary = "A starter deck. Delete me and run `simplex new` to scaffold your own."
 tags = ["intro"]
-theme = "simplex_dark"
 quality = "high_quality"
 voiceover = false
 order = 0
