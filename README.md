@@ -5,8 +5,6 @@ A starter repository for building a Manim lecture site with
 
 This repository is an application template, not a Python package to publish.
 It depends on the published Simplex package set and is wired for GitHub Pages.
-The next consolidated `manim-simplex` release will open an automated PR that
-removes the retired `simplex-web` dependency and refreshes `uv.lock`.
 
 ## First Setup
 
