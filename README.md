@@ -110,7 +110,6 @@ Each deck has a `deck.toml`:
 slug = "example"
 title = "Example Deck"
 summary = "A short description."
-quality = "high_quality"
 entrypoints = ["slides.intro:Intro", "slides.intro:KeyIdea"]
 
 [slide_themes]
@@ -124,6 +123,9 @@ notes_anchor = "key-idea"
 ```
 
 `entrypoints` points to scene classes relative to the deck directory.
+Default Manim render settings, such as `quality = high_quality`, live in the
+deck-local `manim.cfg`; one-off overrides can be passed through
+`simplex render` or `simplex build`.
 The template enables true slide themes by default: Simplex renders
 `simplex_dark` and `simplex_light`, including matching thumbnails, and the
 player swaps between those compiled outputs. Set `[slide_themes] enabled =
