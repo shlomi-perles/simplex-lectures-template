@@ -2,7 +2,6 @@ slug = "example"
 title = "Example Deck"
 summary = "A starter deck. Delete me and run `simplex new` to scaffold your own."
 tags = ["intro"]
-voiceover = false
 order = 0
 entrypoints = ["slides.intro:Intro", "slides.intro:KeyIdea"]
 
@@ -11,6 +10,3 @@ enabled = true
 dark = "simplex_dark"
 light = "simplex_light"
 default = "dark"
-
-[slides."Key Idea"]
-notes_anchor = "key-idea"
