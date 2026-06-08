@@ -4,7 +4,7 @@ version = "0.0.0"
 description = "Lectures site built with Simplex."
 requires-python = ">=3.13"
 dependencies = [
-    "manim-simplex>=0.13.0",
+    "manim-simplex",
 ]
 
 [dependency-groups]
@@ -15,3 +15,6 @@ dev = [
 
 [tool.uv]
 package = false
+
+[tool.uv.sources]
+manim-simplex = { path = "../simplex", editable = true }

@@ -6,6 +6,13 @@ application template, not a Python package to publish: you write decks under
 `decks/`, Simplex renders them with Manim, and GitHub Actions publishes the
 generated `site/` folder to GitHub Pages.
 
+## Playback Architecture
+
+Simplex's accepted playback direction is a continuous timeline player: render
+scene units independently, compose one lecture timeline per theme, package
+HLS/CMAF plus MP4 fallback, and navigate by seeking to cue timestamps instead
+of swapping per-slide videos.
+
 ## First Setup
 
 1. Create a new repository from this template.
@@ -15,14 +22,13 @@ generated `site/` folder to GitHub Pages.
 
    ```bash
    # Ubuntu / Debian
-   sudo apt-get install texlive-latex-extra texlive-fonts-recommended ffmpeg \
+   sudo apt-get install texlive-latex-extra texlive-fonts-recommended \
                         libcairo2-dev libpango1.0-dev
    ```
 
    ```powershell
    # Windows
    winget install MiKTeX.MiKTeX
-   winget install Gyan.FFmpeg
    ```
 
 5. Sync Python dependencies and check the environment:
@@ -104,7 +110,6 @@ Keep shared Manim settings in the root `manim.cfg`:
 [CLI]
 plugins = simplex
 quality = high_quality
-save_sections = True
 ```
 
 Simplex renders with `cwd` set to each deck directory, but it also looks for
@@ -166,8 +171,8 @@ PDF.
 
 Deck notes support:
 
-- Slide refs by normalized slide title, such as `[slide:key-idea]` for a slide
-  titled `Key Idea`. You do not write anchor names in `deck.toml`.
+- Slide refs by normalized slide title, such as `[slide:a-second-slide]` for a
+  slide titled `A Second Slide`. You do not write anchor names in `deck.toml`.
 - Inline and display math with KaTeX syntax.
 - Sidenotes with `^[...]`.
 - Theorem-style callouts from blockquotes.

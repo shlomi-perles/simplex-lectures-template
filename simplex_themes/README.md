@@ -173,7 +173,7 @@ notes_code_style = "simplex_pycharm"
 
 `web_palette` controls generated HTML shell colors, not rendered slide pixels.
 It maps to CSS variables such as `--simplex-bg`, `--simplex-text`, and
-`--simplex-link` for the portal, deck page, and RevealJS shell.
+`--simplex-link` for the portal, deck page, and timeline player shell.
 
 Supported fields:
 
