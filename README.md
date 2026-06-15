@@ -6,6 +6,11 @@ application template, not a Python package to publish: you write decks under
 `decks/`, Simplex renders them with Manim, and GitHub Actions publishes the
 generated `site/` folder to GitHub Pages.
 
+This template is meant for normal Simplex users. It depends on
+`manim-simplex` from PyPI through `pyproject.toml` and `uv.lock`; you do not
+need a local checkout of the `simplex` source repository, and generated
+projects should not point at one.
+
 ## Playback Architecture
 
 Simplex's accepted playback direction is a continuous timeline player: render
@@ -16,7 +21,10 @@ of swapping per-slide videos.
 ## First Setup
 
 1. Create a new repository from this template.
-2. In GitHub, enable `Settings -> Pages -> Source -> GitHub Actions`.
+2. In GitHub, enable `Settings -> Pages -> Build and deployment -> Source ->
+   GitHub Actions`. The deploy workflow exists in this template, but the
+   Pages site is not active until the repository is configured to use GitHub
+   Actions as its source.
 3. Clone your new repository locally.
 4. Install system tools:
 
@@ -44,6 +52,26 @@ of swapping per-slide videos.
    uv run simplex build
    uv run simplex serve
    ```
+
+## Customize First
+
+Before writing real decks, replace the starter identity fields:
+
+- `site.toml`: set `brand`, `tagline`, and nav labels.
+- `pyproject.toml`: set the project `name` and `description`.
+- `README.md`: replace the `My Lectures` heading and intro.
+- `decks/example`: rename, edit, or delete the starter deck.
+
+If you change the project name or dependency constraints in `pyproject.toml`,
+refresh the lockfile before committing:
+
+```bash
+uv lock
+uv lock --check
+```
+
+Commit `uv.lock` together with `pyproject.toml` so local installs and GitHub
+Actions use the same environment.
 
 ## Daily Workflow
 
@@ -226,6 +254,14 @@ uv run simplex theme-studio
 
 The deploy workflow builds `site/` and uploads it with `actions/deploy-pages`.
 There is no `gh-pages` branch.
+
+Enable Pages once per generated repository by selecting `Settings -> Pages ->
+Build and deployment -> Source -> GitHub Actions`. If you prefer the GitHub
+CLI, replace `OWNER` and `REPO` and run:
+
+```bash
+gh api -X POST repos/OWNER/REPO/pages -f build_type=workflow
+```
 
 By default, the workflow sets `SIMPLEX_BASE_URL` to `/<repository-name>`,
 which matches ordinary GitHub project pages. For a custom domain or a root
