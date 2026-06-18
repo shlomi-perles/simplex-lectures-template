@@ -16,7 +16,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended \
+          sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended texlive-science \
                                   ffmpeg libcairo2-dev libpango1.0-dev
 
       - name: Install uv
@@ -32,4 +32,4 @@ jobs:
         run: uv run --locked ruff check .
 
       - name: Smoke render
-        run: uv run --locked simplex test
+        run: uv run --locked simplex test --slide-theme dark

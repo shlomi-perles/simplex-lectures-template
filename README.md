@@ -30,7 +30,7 @@ of swapping per-slide videos.
 
    ```bash
    # Ubuntu / Debian
-   sudo apt-get install texlive-latex-extra texlive-fonts-recommended \
+   sudo apt-get install texlive-latex-extra texlive-fonts-recommended texlive-science \
                         libcairo2-dev libpango1.0-dev
    ```
 
@@ -61,6 +61,8 @@ Before writing real decks, replace the starter identity fields:
 - `pyproject.toml`: set the project `name` and `description`.
 - `README.md`: replace the `My Lectures` heading and intro.
 - `decks/example`: rename, edit, or delete the starter deck.
+- `decks/showcase`: keep as a public Simplex feature demo, or delete it from
+  generated lecture repos that do not need a showcase.
 
 If you change the project name or dependency constraints in `pyproject.toml`,
 refresh the lockfile before committing:
@@ -120,15 +122,20 @@ Push to `main` to publish with GitHub Pages.
 |-- .github/workflows/
 |   |-- ci.yml                smoke render and static checks
 |   `-- deploy.yml            build and deploy to GitHub Pages
-`-- decks/example/
-    |-- deck.toml             deck metadata and scene entrypoints
-    |-- notes.md              rendered into the deck page and notes PDF
-    |-- refs.bib              optional BibTeX references
-    `-- slides/intro.py       Manim scene classes
+`-- decks/
+    |-- example/              small editable starter deck
+    |   |-- deck.toml
+    |   |-- notes.md
+    |   |-- refs.bib
+    |   `-- slides/intro.py
+    `-- showcase/             runnable Simplex feature reference
+        |-- deck.toml
+        |-- notes.md
+        `-- slides/
 ```
 
-The starter deck is real on purpose so the first build produces a useful
-site. Rename it, edit it, or delete it after you add your own decks.
+The starter and showcase decks are real on purpose so the first build produces
+a useful site. Rename, edit, or delete them after you add your own decks.
 
 ## Manim Configuration
 
@@ -285,7 +292,7 @@ template. To update manually:
 ```bash
 uv lock --upgrade-package manim-simplex
 uv sync --locked
-uv run simplex test
+uv run simplex test --slide-theme dark
 ```
 
 Commit both `pyproject.toml` and `uv.lock` when dependency constraints change.
