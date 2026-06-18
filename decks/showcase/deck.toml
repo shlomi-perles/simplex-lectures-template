@@ -12,6 +12,8 @@ entrypoints = [
   "slides.scenes:TrackingHelpers",
   "slides.scenes:ShapeAndDebug",
   "slides.scenes:ScalingHelpers",
+  "slides.paper_showcase:PaperShowcase",
+  "slides.surface_showcase:SurfaceColoring@opengl",
 ]
 order = 0
 slug = "showcase"

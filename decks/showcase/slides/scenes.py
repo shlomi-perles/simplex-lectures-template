@@ -136,9 +136,9 @@ class TextHelpers(Slide):
             r"number of Manim units instead of a Region.",
             page_width=self.region.width * 0.62,
         )
-        formula = MathTex(r"a^2 + b^2 = c^2")
+        formula = MathTex(r"a^2 + b^2 = c^2").next_to(narrow, DOWN)
         color_substrings(formula, {"a": RED, "b": BLUE, "c": YELLOW})
-        region_c.place(narrow, UP)
+        region_c.place(VGroup(narrow, formula))
         self.play(Write(narrow))
         self.next_slide()
 
@@ -642,7 +642,7 @@ class GlyphMapTransform(Slide):
     def _glyph_specs_6(self) -> GlyphSpec:
         exp1 = MathTex("4x^2 - x^2 + 5x + 3x - 7")
         exp2 = MathTex("3x^2 + 8x - 7")
-        VGroup(exp1, exp2).arrange(DOWN, buff=0.35)
+        VGroup(exp1, exp2).arrange(DOWN, buff=SMALL_BUFF)
         return (
             exp1,
             exp2,
@@ -697,7 +697,8 @@ class TrackingHelpers(Slide):
         # A clock-style pointer driven by a VT angle. Use manim's vanilla
         # ``rotate_vector`` for unit-vector math -- no Simplex wrapper.
         angle = VT(0.0)
-        face = Circle(radius=2.0, color=BLUE).set_stroke(width=2)
+        face = Circle(color=BLUE)
+        self.region.scale_and_place(face, scale_kwargs=dict(scaleback=0.5))
         ticks = VGroup(
             *(
                 Line(
@@ -728,8 +729,7 @@ class TrackingHelpers(Slide):
             num_decimal_places=0,
             unit=r"^{\circ}",
         )
-        readout.scale(0.9)
-        readout.next_to(face, DOWN, buff=0.5)
+        readout.next_to(face, DOWN)
         # `~vt` reads it; `vt @ x` returns an animate.set_value builder for play().
 
         self.play(
