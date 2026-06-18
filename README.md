@@ -31,6 +31,7 @@ of swapping per-slide videos.
    ```bash
    # Ubuntu / Debian
    sudo apt-get install texlive-latex-extra texlive-fonts-recommended texlive-science \
+                        ffmpeg fontconfig fonts-jetbrains-mono \
                         libcairo2-dev libpango1.0-dev
    ```
 

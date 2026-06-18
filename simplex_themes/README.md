@@ -70,6 +70,10 @@ All fields are optional except that a theme must eventually resolve a full
 semantic `palette`. Simplex fills missing palette fields from `manim_palette`;
 if `manim_palette` is omitted, it fills from Manim's default palette.
 
+Typography font names are Manim/Pango system font family names, not bundled web
+fonts. The template installs `fonts-jetbrains-mono` in CI and deploy workflows
+because the built-in code theme uses `mono_family = "JetBrains Mono"`.
+
 ## Manim Palettes
 
 `manim_palette` controls Manim color constants such as `BLUE`, `BLUE_A`,

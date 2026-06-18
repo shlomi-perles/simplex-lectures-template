@@ -5,7 +5,7 @@ from typing import Any
 
 from manim import BOLD, UP, Text, Title
 
-SIMPLEX_LOGO = Text("Simplex", font="Space Grotesk", weight=BOLD)
+SIMPLEX_LOGO = Text("Simplex", weight=BOLD)
 
 _TITLE_TEX_REPLACEMENTS = {
     "\\": r"\textbackslash{}",
